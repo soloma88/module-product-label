@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="product_label_entity" resource="default" engine="innodb" comment="Product Label Entity">
+        <column xsi:type="int" name="entity_id" padding="5" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="boolean" name="is_active" nullable="false" default="0" comment="Is Active"/>
+        <column xsi:type="varchar" name="name" nullable="false" comment="Label Name" />
+        <column xsi:type="varchar" name="image" nullable="false" comment="Image" />
+        <column xsi:type="text" name="conditions_serialized" nullable="true" comment="Conditions" />
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="product_label_store" resource="default" engine="innodb" comment="Product Label Store Relations">
+        <column xsi:type="int" name="label_id" padding="5" unsigned="true" nullable="false" comment="Product Label Id"/>
+        <column xsi:type="smallint" padding="5" unsigned="true" name="store_id" nullable="false" comment="Store Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="label_id"/>
+            <column name="store_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="PRODUCT_LABEL_STORE_LABEL_ID_PRODUCT_LABEL_ENTITY_ENTITY_ID"
+                    table="product_label_store" column="label_id" referenceTable="product_label_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PRODUCT_LABEL_STORE_STORE_ID_STORE_STORE_ID"
+                    table="product_label_store" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="PRODUCT_LABEL_STORE_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="product_label_index" resource="default" engine="innodb" comment="Product Index Label">
+        <column xsi:type="int" name="label_id" padding="5" unsigned="true" nullable="false" comment="Label ID"
+                identity="false"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" comment="Product ID"
+                identity="false"/>
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" comment="Store ID"
+                identity="false"/>
+        <constraint xsi:type="foreign" referenceId="PRODUCT_LABEL_INDEX_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="product_label_index" column="product_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PRODUCT_LABEL_INDEX_LABEL_ID_PRODUCT_LABEL_ENTITY_ENTITY_ID"
+                    table="product_label_index" column="label_id" referenceTable="product_label_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="PRODUCT_LABEL_INDEX_STORE_ID_STORE_STORE_ID"
+                    table="product_label_index" column="store_id" referenceTable="store"
+                    referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="PRODUCT_LABEL_INDEX_PRODUCT_ID_STORE_ID" indexType="btree">
+            <column name="product_id"/>
+            <column name="store_id"/>
+        </index>
+        <index referenceId="PRODUCT_LABEL_INDEX_LABEL_ID" indexType="btree">
+            <column name="label_id"/>
+        </index>
+    </table>
+</schema>

@@ -1,0 +1,33 @@
+{
+    "product_label_entity": {
+        "column": {
+            "entity_id": true,
+            "is_active": true,
+            "name": true,
+            "stores": true,
+            "image": true,
+            "conditions_serialized": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "product_label_index": {
+        "column": {
+            "label_id": true,
+            "product_id": true,
+            "store_id": true
+        },
+        "index": {
+            "PRODUCT_LABEL_INDEX_PRODUCT_ID_STORE_ID": true,
+            "PRODUCT_LABEL_INDEX_LABEL_ID": true
+        },
+        "constraint": {
+            "PRODUCT_LABEL_INDEX_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true,
+            "PRODUCT_LABEL_INDEX_LABEL_ID_PRODUCT_LABEL_ENTITY_ENTITY_ID": true,
+            "PRODUCT_LABEL_INDEX_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}

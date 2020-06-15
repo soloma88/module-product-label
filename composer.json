@@ -1,0 +1,22 @@
+{
+  "name": "rmg/module-product-label",
+  "description": "N/A",
+  "homepage": "http://rmgmedia.com/",
+  "require": {
+    "magento/framework": "*",
+    "magento/magento-composer-installer": "*"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Rmg\\ProductLabel\\": ""
+    }
+  },
+  "version": "1.0.0"
+}

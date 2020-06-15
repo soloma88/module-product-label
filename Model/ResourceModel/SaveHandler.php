@@ -5,7 +5,6 @@
 
 declare(strict_types=1);
 
-
 namespace Rmg\ProductLabel\Model\ResourceModel;
 
 use Magento\Framework\EntityManager\MetadataPool;

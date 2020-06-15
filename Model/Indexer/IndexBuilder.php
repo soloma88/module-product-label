@@ -5,7 +5,6 @@
 
 declare(strict_types=1);
 
-
 namespace Rmg\ProductLabel\Model\Indexer;
 
 use Magento\CatalogRule\Model\Rule;
@@ -14,6 +13,10 @@ use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Rmg\ProductLabel\Model\ProductLabelRepository;
 
+/**
+ * TODO: this is only skeleton of indexer.
+ * It is not working for now and some things are copied from default magento rule indexer
+ */
 class IndexBuilder
 {
     public const INDEX_TABLE_NAME = 'product_label_index';

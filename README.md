@@ -1,6 +1,6 @@
 # module-product-label
 
-Example of the module that I've started to develop in my fre time for my current company.
+Example of the module that I've started to develop in my free time for my current company.
 
 This module allows to assign image labels to products by rules. So they will be shown on product blocks on frontend.
 
